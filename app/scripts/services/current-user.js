@@ -19,6 +19,9 @@ function CurrentUser(UserState, Game, FirebaseRef, $firebaseAuth, Error, $rootSc
         return user;
     }
 
+
+
+
     this.toggleReady = function(status){
         this.ready = status;
         this.ref.update({ready: status});
@@ -27,6 +30,15 @@ function CurrentUser(UserState, Game, FirebaseRef, $firebaseAuth, Error, $rootSc
     this.setUser = function(name){
         $firebaseAuth(FirebaseRef).$authAnonymously().then(function(authData) {
             var user = setDetails(name, authData.uid);
+
+            // Försöka göra så att man inte kan få samma avatar + färg som nån annan
+            // var index = colors.indexOf(user.color);
+            // colors.splice(index, 1);
+            // console.log(colors);
+            //
+            // var index2 = avatars.indexOf(user.avatar);
+            // avatars.splice(index2, 1);
+            // console.log(avatars);
 
             console.log("Logged in as:", authData.uid);
             self.ref = Game.ref.child('players').child(authData.uid);
