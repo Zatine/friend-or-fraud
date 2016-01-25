@@ -12,8 +12,8 @@ function GameController($scope, $interval, Mobile, $state, $timeout, Game, Curre
 
             function timer() {
                 Game.timerTick();
-                //$scope.count = $scope.count - 1;
-                if (Game.time <= 0 || (Game.numOfPlayers - 1) == Game.currentQuestion.answers.total) {
+                var answers = Game.currentQuestion.answers ? Game.currentQuestion.answers.total : 0;
+                if (Game.time <= 0 || (Game.numOfPlayers - 1) == answers) {
                     $interval.cancel(counter);
                     Game.timerTick(true);
                     return;
@@ -22,10 +22,11 @@ function GameController($scope, $interval, Mobile, $state, $timeout, Game, Curre
         }
 
         if($state.is('display-answer')) {
+            var answers = Game.currentQuestion.answers ? Game.currentQuestion.answers.correct : false;
             if(CurrentUser.answer === Game.currentQuestion.selectedAnswer && CurrentUser.id !== Game.currentPlayer.id){
                 CurrentUser.addScore(1);
             }
-            else if(CurrentUser.id === Game.currentPlayer.id && Game.currentQuestion.answers.correct){
+            else if(CurrentUser.id === Game.currentPlayer.id && answers){
                 CurrentUser.addScore(1);
             }
             
