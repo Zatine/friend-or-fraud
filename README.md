@@ -20,10 +20,10 @@ The following commands will install all necessary packages from NPM.
 It will also open you browser pointing to the app.
 
 Install all dependencies
-`$ npm install`
+```$ npm install```
 
 Run gulp
-`$ gulp serve`
+```$ gulp serve```
 
 ## Play the game
 1. Every player have to download the game and run the server(gulp serve).
