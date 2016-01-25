@@ -77,20 +77,20 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
       self.ref.update({questions: self.questions});*/    
       resetTimer();
       resetAnswers(self.players);
+/*      self.ref.child('currentQuestion').remove();
+      self.ref.child('currentPlayer').remove();*/
 
-      currentQuestionIndex++;
+      currentQuestionIndex++;      
+      currentPlayerIndex = currentPlayerIndex == (self.numOfPlayers - 1) ? 0 : currentPlayerIndex + 1;
       
       if(currentQuestionIndex > (self.questions.length - 1)) {
           endGame();
           return;
       }
       
-      currentPlayerIndex = currentPlayerIndex == (self.numOfPlayers - 1) ? 0 : currentPlayerIndex + 1;
-    
       self.currentQuestion = self.questions[currentQuestionIndex];
-      setCurrentPlayer(self.playerOrder[currentPlayerIndex]);
-      self.ref.update({currentQuestion: self.currentQuestion});
-    
+      self.ref.child('currentQuestion').set(self.currentQuestion);
+      setCurrentPlayer(self.playerOrder[currentPlayerIndex]);    
   }
 
   this.setCurrentQuestionAnswer = function(answer){
@@ -138,6 +138,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
        if(!self.inProgress /*&& !self.currentPlayer && !self.currentQuestion*/){
           self.ref.child('players').off('value');
           self.ref.child('currentQuestion').off('value');
+          endGame();
           $timeout(function(){
             $state.go('result');
           });
