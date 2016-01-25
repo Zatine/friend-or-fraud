@@ -77,8 +77,8 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
       self.ref.update({questions: self.questions});*/    
       resetTimer();
       resetAnswers(self.players);
-/*      self.ref.child('currentQuestion').remove();
-      self.ref.child('currentPlayer').remove();*/
+      self.ref.child('currentQuestion').remove();
+      self.ref.child('currentPlayer').remove();
 
       currentQuestionIndex++;      
       currentPlayerIndex = currentPlayerIndex == (self.numOfPlayers - 1) ? 0 : currentPlayerIndex + 1;
