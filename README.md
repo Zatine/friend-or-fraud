@@ -24,7 +24,8 @@ $ gulp serve
 ```
 
 ## Play the game
-1. Every player have to download the game and run the server(gulp serve).
-2. Every player have to connect themself to their own local URL on the mobile to use it as the controller(the URL will show in the terminal when you connect).
-3. Connect yourself to one of the players game by entering the Game ID in your controller(mobile).
+1. Every player have to download the game and run the server (gulp serve).
+2. Every player have to connect themself to their own local URL on the mobile to use it as the controller (the URL will show in the terminal when you connect).
+3. Connect yourself to one of the players game by entering the Game ID in your controller (mobile).
+
 
