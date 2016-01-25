@@ -19,7 +19,7 @@
 
    <div ng-if="user.id != game.currentPlayer.id">
         <h3 class="timer"></h3>
-        <div class="circle" ng-class="game.currentPlayer.color"></div>
+        <div class="circle {{game.currentPlayer.color}} {{game.currentPlayer.avatar}}"></div>
         <h3>What's <span class="{{game.currentPlayer.color}}-text">{{game.currentPlayer.name}}'s</span>{{game.currentQuestion.question}}</h3>
         <ul>
             <li ng-repeat="option in game.currentQuestion.options">
