@@ -20,13 +20,16 @@ $outline: rgba(245, 22, 62, 0.87);
 }
 
 @font-face {
-  font-family: 'Quicksand_Light'; src: url('../fonts/Quicksand_Light.otf');
+  font-family: 'Quicksand_Light';
+  src: url('../fonts/Quicksand_Light.otf');
 }
 @font-face {
-  font-family: 'Quicksand_Regular'; src: url('../fonts/Quicksand_Regular.otf');
+  font-family: 'Quicksand_Regular';
+  src: url('../fonts/Quicksand_Regular.otf');
 }
 @font-face {
-  font-family: 'Roboto'; src: url('../fonts/Roboto-Thin.otf');
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Thin.ttf');
 }
 
 /* Generate .color and .color-text for each color in the list */

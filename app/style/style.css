@@ -8,7 +8,7 @@
   src: url("../fonts/Quicksand_Regular.otf"); }
 @font-face {
   font-family: 'Roboto';
-  src: url("../fonts/Roboto-Thin.otf"); }
+  src: url("../fonts/Roboto-Thin.ttf"); }
 /* Generate .color and .color-text for each color in the list */
 .pink {
   background-color: #FC2768; }
