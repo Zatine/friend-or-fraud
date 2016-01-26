@@ -5,8 +5,8 @@
         <ul>
             <li ng-repeat="option in game.currentQuestion.options">
                 <div class="answers">
-                    <div class="answer-circle" ng-repeat="answer in game.currentQuestion.answers.correct" ng-if="option == answer.answer" class="{{answer.color}} {{answer.avatar}}"></div>
-                    <div class="answer-circle" ng-repeat="answer in game.currentQuestion.answers.wrong" ng-if="option == answer.answer" class="{{answer.color}} {{answer.avatar}}"></div>
+                    <div class="answer-circle" ng-repeat="answer in game.currentQuestion.answers.correct" ng-if="option == answer.answer" class="{{answer.color}}"></div>
+                    <div class="answer-circle" ng-repeat="answer in game.currentQuestion.answers.wrong" ng-if="option == answer.answer" class="{{answer.color}}"></div>
                 </div>
                 <button ng-class="{'correct' : option == game.currentQuestion.selectedAnswer, 'wrong' : option != game.currentQuestion.selectedAnswer}">{{option}}
                 </button>

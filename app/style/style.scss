@@ -175,10 +175,18 @@ a{
     transform: rotate(32deg);
     cursor: pointer;
     p{
-        color: white;
+        color: #BDB8B8;
         width: 74px;
         padding-top: 46px;
         padding-left: 36px;
+    }
+}
+.big-circle:hover{
+    background: rgba(0, 91, 127, 0.83);
+    transition: background 1s;
+    p{
+        color: white;
+        transition: color 1s;
     }
 }
 
@@ -363,7 +371,8 @@ h5{
     position: fixed;
 }
 .how-to-play{
-    border: 13px solid#033D54;
+    transition: background 2s;
+    border: 13px solid #033D54;
     border-radius: 35px;
     height: 20%;
     z-index: 200;
@@ -371,8 +380,8 @@ h5{
     height: 350px;
     margin: 0 auto;
     position: absolute;
-    left: 31%;
-    top: 25%;
+    left: 29%;
+    top: 15%;
     background-color: #EAEAEA;
     color: #5E4F4F;
     h2{
