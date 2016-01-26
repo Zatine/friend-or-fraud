@@ -347,23 +347,36 @@ h5{
     border-radius: 35px;
     height: 20%;
     z-index: 200;
-    width: 40%;
-    height: 50%;
+    width: 600px;
+    height: 350px;
     margin: 0 auto;
     position: absolute;
     left: 31%;
     top: 25%;
     background-color: #EAEAEA;
     color: #5E4F4F;
+    h2{
+        padding-top: 30px;
+    }
     span{
         float: right;
         margin-right: 13px;
         font-weight: bold;
         cursor: pointer;
         color: #B3B3B3;
+        position: absolute;
+        z-index: 2;
+        right: 4px;
     }
     span:hover{
         color: #5E4F4F;
         transition: color 1s;
+    }
+    ul {
+        margin-bottom: 1.5rem;
+        li{
+            width: 100%;
+            text-align: center;
+        }
     }
 }
