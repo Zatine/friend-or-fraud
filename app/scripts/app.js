@@ -37,4 +37,3 @@ function config($stateProvider, $urlRouterProvider){
         controller: "ResultController"
         })
 }
-
