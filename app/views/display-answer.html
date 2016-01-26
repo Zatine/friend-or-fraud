@@ -18,6 +18,7 @@
 
 <div ng-if="onMobile" class="mobile">
   <div ng-if="user.id == game.currentPlayer.id && game.currentQuestion.answers.correct">
+        <img class="pokal" src="../images/pokal.png">
         <p>{{game.currentQuestion.answers.correct.length}} people answered correctly. You get 1 point!</p>
         <p>Your current score is {{user.score}}.</p>
   </div>
@@ -26,15 +27,16 @@
         <p>Your current score is {{user.score}}.</p>
   </div>
 
-   <div ng-if="user.id != game.currentPlayer.id">
-       <div ng-if="user.answer == game.currentQuestion.selectedAnswer">
-         <p>Correct! You earned 1 point.</p>
-         <p>Your current score is {{user.score}}.</p>
-       </div>
-       <div ng-if="user.answer != game.currentQuestion.selectedAnswer">
-         <p>Wrong! No points this round.</p>
-         <p>Your current score is {{user.score}}.</p>
-       </div>
+  <div ng-if="user.id != game.currentPlayer.id">
+      <div class="pokal" ng-if="user.answer == game.currentQuestion.selectedAnswer">
+          <img src="../images/pokal.png">
+          <p>Correct! You earned 1 point.</p>
+          <p>Your current score is {{user.score}}.</p>
+      </div>
+      <div ng-if="user.answer != game.currentQuestion.selectedAnswer">
+          <p>Wrong! No points this round.</p>
+          <p>Your current score is {{user.score}}.</p>
+      </div>
   </div>
 
 </div>
