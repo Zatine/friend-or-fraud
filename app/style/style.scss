@@ -19,6 +19,16 @@ $outline: rgba(245, 22, 62, 0.87);
   padding-left: 5px;
 }
 
+@font-face {
+  font-family: 'Quicksand_Light'; src: url('../fonts/Quicksand_Light.otf');
+}
+@font-face {
+  font-family: 'Quicksand_Regular'; src: url('../fonts/Quicksand_Regular.otf');
+}
+@font-face {
+  font-family: 'Roboto'; src: url('../fonts/Roboto-Thin.otf');
+}
+
 /* Generate .color and .color-text for each color in the list */
 $colors: (
   'pink' #FC2768,
@@ -55,11 +65,17 @@ h1, h2, h3, h4, h5, h6{
     font-weight: normal;
     color: $heading-color;
     margin: 0;
+    font-family: Roboto, sans-serif;
 }
 
 h1{
     font-size: 4em;
     margin-top: 50px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+h2{
+  font-weight: bold;
 }
 
 h3{
@@ -73,10 +89,12 @@ h4{
 
 p{
     color: $text-color;
+    font-family: Roboto, sans-serif;
 }
 
 a{
   text-decoration: none;
+  font-family: Roboto, sans-serif;
 }
 
 .main{
@@ -174,7 +192,9 @@ li{
     width: 250px;
     margin: 0 auto;
     text-align: left;
+    font-family: Roboto, sans-serif;
     button{
+        font-family: Roboto, sans-serif;
         position: relative;
         width: 100%;
     }
@@ -379,4 +399,12 @@ h5{
             text-align: center;
         }
     }
+}
+.pink-text{
+  font-weight: bold;
+}
+.how-to-play-list{
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 10px;
 }

@@ -1,10 +1,10 @@
 <div class="big-circle blue" ng-click="howToPlay()"><p class="unselectable">How to Play</p></div>
     <div class="container main">
-        <div class="overlay" ng-if="howToPlayButton" ng-click="howToPlay()">
+        <div class="overlay" ng-if="howToPlayButton && !onMobile" ng-click="howToPlay()">
             <div class="how-to-play">
                 <span ng-click="howToPlay()">&#x2613</span>
                 <h2>How to Play</h2>
-                <ul>
+                <ul class="how-to-play-list">
                     <li>1. Use your phone as a controller in the game.</li>
                     <li>2. Connect yourself to your friend's computer by entering the Game ID on your controller (phone).</li>
                     <li>3. Enter your name and press ready.</li>
