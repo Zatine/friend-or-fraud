@@ -41,7 +41,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
               self.inProgress = update.inProgress;
               self.playerOrder = update.playerOrder;
               self.players = snapshot.val().players;
-          
+
               self.ref.update(update);
               if(update.inProgress) {self.ref.off('value'); setupGame();}
               if(!$rootScope.$$phase) $rootScope.$apply();
@@ -74,40 +74,40 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
   this.nextQuestion = function(){
       if(Mobile) return;
       /*self.questions[currentQuestionIndex] = self.currentQuestion;
-      self.ref.update({questions: self.questions});*/    
+      self.ref.update({questions: self.questions});*/
       resetTimer();
       resetAnswers(self.players);
       self.ref.child('currentQuestion').remove();
       self.ref.child('currentPlayer').remove();
 
-      currentQuestionIndex++;      
+      currentQuestionIndex++;
       currentPlayerIndex = currentPlayerIndex == (self.numOfPlayers - 1) ? 0 : currentPlayerIndex + 1;
-      
+
       if(currentQuestionIndex > (self.questions.length - 1)) {
           endGame();
           return;
       }
-      
+
       self.currentQuestion = self.questions[currentQuestionIndex];
       self.ref.child('currentQuestion').set(self.currentQuestion);
-      setCurrentPlayer(self.playerOrder[currentPlayerIndex]);    
+      setCurrentPlayer(self.playerOrder[currentPlayerIndex]);
   }
 
   this.setCurrentQuestionAnswer = function(answer){
     self.ref.child('currentQuestion').update({selectedAnswer: answer});
   }
-  
+
   this.timerTick = function(end){
     end = end || false;
     self.time = end ? 0 : self.time - 1;
     self.ref.update({time: self.time});
   }
-  
+
   function resetTimer(){
     self.time = 9;
-    self.ref.update({time: 9});    
+    self.ref.update({time: 9});
   }
-  
+
   function setCurrentPlayer(id){
        self.ref.child('players').once('value', function(snapshot) {
           self.currentPlayer = snapshot.val()[id];
@@ -117,7 +117,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
 
   function setupGame(){
     FirebaseRef.child('Questions').once('value', function(snapshot) {
-        self.questions = shuffleArray(snapshot.val()).splice(0, 2);
+        self.questions = shuffleArray(snapshot.val()).splice(0, 5);
 
         self.playerOrder = shuffleArray(self.playerOrder);
 
@@ -187,7 +187,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
       if(ready.indexOf(false) === -1 && ready.length && self.numOfPlayers > 1) play = true;
       return {numOfPlayers: size, inProgress: play, playerOrder: order};
   }
-  
+
   function correctAnswers(players){
     var correct = [], wrong = [];
     for (key in players) {
@@ -200,7 +200,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
     }
     return {answers:{correct:correct, wrong:wrong, total:(correct.length + wrong.length)}};
   }
-  
+
   function resetAnswers(players){
     for (key in players) {
          if(players[key].answer){
@@ -209,7 +209,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
     }
     self.ref.child('players').update(players);
   }
-  
+
   function generateGameCode(){
       var finalCode = [],
           possibleCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
