@@ -8,7 +8,7 @@
   src: url("../fonts/Quicksand_Regular.otf"); }
 @font-face {
   font-family: 'Roboto';
-  src: url("../fonts/Roboto-Thin.otf"); }
+  src: url("../fonts/Roboto-Thin.ttf"); }
 /* Generate .color and .color-text for each color in the list */
 .pink {
   background-color: #FC2768; }
@@ -57,10 +57,13 @@ body {
   background: #eee;
   font-family: sans-serif;
   text-align: center;
-  font-size: 24px; }
+  font-size: 24px;
+  padding-top: 90px; }
   @media (max-width: 970px) {
     body {
-      font-size: 12px; } }
+      font-size: 12px;
+      font-weight: bold;
+      padding-top: 0; } }
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -84,9 +87,13 @@ h4 {
   font-size: 3em;
   margin-bottom: 10px; }
 
+h5 {
+  text-transform: uppercase; }
+
 p {
   color: #383838;
-  font-family: Roboto, sans-serif; }
+  font-family: Roboto, sans-serif;
+  font-weight: bold; }
 
 a {
   text-decoration: none;
@@ -192,6 +199,7 @@ li {
   font-family: Roboto, sans-serif; }
   li button {
     font-family: Roboto, sans-serif;
+    font-weight: bold;
     position: relative;
     width: 100%; }
   li button.wrong:after {
@@ -220,12 +228,12 @@ li {
     font-size: 20px; }
     li button.play-again {
       margin-top: 10em;
-      background-color: rgba(245, 22, 62, 0.87);
+      background-color: #fc6c85;
       border: 2px solid #383838; }
       li button.play-again a {
         color: white; }
     li button.play-again-mobile {
-      background-color: rgba(245, 22, 62, 0.87);
+      background-color: #fc6c85;
       border: 2px solid #383838;
       margin-top: 5em; }
       li button.play-again-mobile a {
@@ -271,7 +279,7 @@ h4 {
 h5 {
   margin: 15px 15px;
   font-size: 3em;
-  text-shadow: -1px -1px 0 rgba(245, 22, 62, 0.87), 1px -1px 0 rgba(245, 22, 62, 0.87), -1px 1px 0 rgba(245, 22, 62, 0.87), 1px 1px 0 rgba(245, 22, 62, 0.87); }
+  text-shadow: -1px -1px 0 #fc6c85, 1px -1px 0 #fc6c85, -1px 1px 0 #fc6c85, 1px 1px 0 #fc6c85; }
 
 .timer-red {
   color: #e11f1f; }
@@ -294,7 +302,7 @@ h5 {
   width: 30%;
   margin: 2px; }
   .game-over-rank li:first-child {
-    background-color: rgba(245, 22, 62, 0.87);
+    background-color: #fc6c85;
     font-weight: bold;
     padding-left: 5px; }
 
@@ -303,7 +311,7 @@ h5 {
   width: 30%;
   margin: 2px; }
   .game-over-name li:first-child {
-    background-color: rgba(245, 22, 62, 0.87);
+    background-color: #fc6c85;
     font-weight: bold;
     padding-left: 5px; }
 
@@ -312,7 +320,7 @@ h5 {
   width: 30%;
   margin: 2px; }
   .game-over-score li:first-child {
-    background-color: rgba(245, 22, 62, 0.87);
+    background-color: #fc6c85;
     font-weight: bold;
     padding-left: 5px; }
 
@@ -371,3 +379,15 @@ h5 {
   width: 90%;
   margin: 0 auto;
   padding-top: 10px; }
+
+.header-score {
+  background-color: #fc6c85;
+  font-weight: bold;
+  padding-left: 5px; }
+
+.score-list {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 100px;
+  border: 1px solid black;
+  border-radius: 10px; }

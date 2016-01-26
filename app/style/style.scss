@@ -11,10 +11,10 @@ $red: #c61f1f;
 $green: #39b54a;
 $orange: #f68e56;
 $panicRed : #e11f1f;
-$outline: rgba(245, 22, 62, 0.87);
+$outline: #fc6c85; //rgba(245, 22, 62, 0.87);
 
 @mixin score-first-child{
-  background-color: $outline;
+  background-color: #fc6c85;//$outline;
   font-weight: bold;
   padding-left: 5px;
 }
@@ -26,7 +26,7 @@ $outline: rgba(245, 22, 62, 0.87);
   font-family: 'Quicksand_Regular'; src: url('../fonts/Quicksand_Regular.otf');
 }
 @font-face {
-  font-family: 'Roboto'; src: url('../fonts/Roboto-Thin.otf');
+  font-family: 'Roboto'; src: url('../fonts/Roboto-Thin.ttf');
 }
 
 /* Generate .color and .color-text for each color in the list */
@@ -56,8 +56,12 @@ body{
     font-family: sans-serif;
     text-align: center;
     font-size: 24px;
+    padding-top: 90px;
+
     @media(max-width: $tablet){
       font-size: 12px;
+      font-weight: bold;
+      padding-top: 0;
     }
 }
 
@@ -86,10 +90,14 @@ h4{
   font-size: 3em;
   margin-bottom: 10px;
 }
+h5{
+  text-transform: uppercase;
+}
 
 p{
     color: $text-color;
     font-family: Roboto, sans-serif;
+    font-weight: bold;
 }
 
 a{
@@ -203,6 +211,7 @@ li{
     font-family: Roboto, sans-serif;
     button{
         font-family: Roboto, sans-serif;
+      font-weight: bold;
         position: relative;
         width: 100%;
     }
@@ -416,4 +425,14 @@ h5{
   width: 90%;
   margin: 0 auto;
   padding-top: 10px;
+}
+.header-score{
+  @include score-first-child;
+}
+.score-list{
+  width: 90%;
+  margin: auto;
+  padding-bottom: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
 }
