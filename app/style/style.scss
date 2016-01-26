@@ -20,13 +20,8 @@ $outline: #fc6c85; //rgba(245, 22, 62, 0.87);
 }
 
 @font-face {
-  font-family: 'Quicksand_Light'; src: url('../fonts/Quicksand_Light.otf');
-}
-@font-face {
-  font-family: 'Quicksand_Regular'; src: url('../fonts/Quicksand_Regular.otf');
-}
-@font-face {
-  font-family: 'Roboto'; src: url('../fonts/Roboto-Thin.ttf');
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Thin.ttf');
 }
 
 /* Generate .color and .color-text for each color in the list */
@@ -426,6 +421,7 @@ h5{
   margin: 0 auto;
   padding-top: 10px;
 }
+
 .header-score{
   @include score-first-child;
 }
@@ -436,3 +432,4 @@ h5{
   border: 1px solid black;
   border-radius: 10px;
 }
+

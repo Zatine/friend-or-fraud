@@ -1,12 +1,6 @@
 /* Values from Bootstrap */
 /* Color Variables */
 @font-face {
-  font-family: 'Quicksand_Light';
-  src: url("../fonts/Quicksand_Light.otf"); }
-@font-face {
-  font-family: 'Quicksand_Regular';
-  src: url("../fonts/Quicksand_Regular.otf"); }
-@font-face {
   font-family: 'Roboto';
   src: url("../fonts/Roboto-Thin.ttf"); }
 /* Generate .color and .color-text for each color in the list */
