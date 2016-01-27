@@ -33,7 +33,6 @@ function config($stateProvider, $urlRouterProvider){
         controller: 'GameController'
         })
         .state('result', {
-        url: "/result",
         templateUrl: "../views/result.html",
         controller: "ResultController"
         })
