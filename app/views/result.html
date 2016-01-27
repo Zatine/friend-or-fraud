@@ -42,8 +42,36 @@
           {{player.name}}
         </div>
         <div class="four columns">
-          {{player.score}}
-        </div>
+
+                <div ng-if="player.score == 1">
+                    <img src="../images/coin.png">
+                </div>
+                <div ng-if="player.score == 2">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                </div>
+                <div ng-if="player.score == 3">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                </div>
+                <div ng-if="player.score == 4">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                </div>
+                <div ng-if="player.score == 5">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                    <img src="../images/coin.png">
+                </div>
+
+
+
+
       </div>
     </div>
 </div>
