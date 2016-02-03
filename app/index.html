@@ -3,22 +3,31 @@
     <head>
         <title>Friend or Fraud</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <!--build:css css/styles.min.css-->
-        <link rel="stylesheet" href="style/skeleton.css" type="text/css">
-        <link rel="stylesheet" href="style/style.css" type="text/css">
-        <!--endbuild-->
-
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/firebase/firebase.js"></script>
-        <script src="bower_components/angularfire/dist/angularfire.js"></script>
-        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      
+        <!-- inject:css -->
+        <link rel="stylesheet" href="/style/skeleton.css">
+        <link rel="stylesheet" href="/style/style.css">
+        <!-- endinject -->
+        
+        <!-- inject:head:js -->
+        <script src="/lib/angular.js"></script>
+        <script src="/lib/angular-ui-router.js"></script>
+        <script src="/lib/angularfire.js"></script>
+        <script src="/lib/firebase.js"></script>
+        <!-- endinject -->
 
     </head>
     <body ng-app="app">
+      
         <div ui-view></div>
-        <!--build:js js/main.js-->
-        <script src="scripts/main.js"></script>
-        <!--endbuild-->
+        <!--inject:js-->
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/services/current-user.js"></script>
+        <script src="/scripts/services/game.js"></script>
+        <script src="/scripts/controllers/game-controller.js"></script>
+        <script src="/scripts/controllers/main-controller.js"></script>
+        <script src="/scripts/controllers/result-controller.js"></script>
+        <!--endinject-->
 
     </body>
 </html>

@@ -12,7 +12,7 @@ function isMobile(){
 }
 
 function config($stateProvider, $urlRouterProvider){
-    $urlRouterProvider.otherwise("main");
+    //$urlRouterProvider.otherwise("#");
 
     $stateProvider
         .state('main', {

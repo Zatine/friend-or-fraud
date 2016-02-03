@@ -142,7 +142,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
     self.ref.on('value', function(snapshot){
        setGameParameters(snapshot.val());
        if(self.time === 0 && $state.is('guess-answer')){ $state.go('display-answer');}
-       if(self.time === 9 && $state.is('display-answer') && !self.wait && self.currentQuestion && self.currentPlayer){$state.go('set-answer'); setWait(true);}
+       if(self.time === 9 && $state.is('display-answer') && !self.wait && self.currentQuestion && self.currentPlayer){$state.go('set-answer');}
       
        if(!self.inProgress && !self.currentPlayer && !self.currentQuestion){
           self.ref.child('players').off('value');
@@ -164,7 +164,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
     self.ref.child('currentQuestion').on('value', function (snapshot){
       if(snapshot.val()) self.currentQuestion = snapshot.val();
       else return;
-      if(self.currentQuestion.selectedAnswer && $state.is('set-answer') && self.time > 0) $state.go('guess-answer');
+      if(self.currentQuestion.selectedAnswer && $state.is('set-answer') && self.time > 0){setWait(true); $state.go('guess-answer');}
     });
     
     $state.go('set-answer');
