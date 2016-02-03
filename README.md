@@ -1,6 +1,8 @@
 # Friend-Or-Fraud
 Javascript 3 Project
 
+[Live Demo](http://fof.mikaelagrundin.com)
+
 ## Get the project
 `$ git clone https://github.com/Zatine/friend-or-fraud.git`
 Or download the zip-file
@@ -8,7 +10,7 @@ Or download the zip-file
 ## Installation
 The build scripts requires [NodeJS](http://nodejs.org).
 
-You need to install bower for the project to work. Make sure youre in the 'app'-folder when you run:
+You need to install bower for the project to work.
 ```
 $ npm install -g bower
 $ bower install
@@ -20,12 +22,17 @@ The following commands will install all necessary packages from NPM.
 It will also open you browser pointing to the app.
 ```
 $ npm install
-$ gulp serve
+$ gulp
 ```
 
-## Play the game
-1. Every player have to download the game and run the server (gulp serve).
-2. Every player have to connect themself to their own local URL on the mobile to use it as the controller (the URL will show in the terminal when you connect).
-3. Connect yourself to one of the players game by entering the Game ID in your controller (mobile).
+## Play the game locally
+1. Every player has to download the game and run the server (gulp default task). 
+2. Every player has to connect to their own local URL to use their phone as a controller (the URL will show up in the terminal when you connect). Since Browsersync is used for simultaneous testing on different browsers and devices, several units connecting to the same URL will be messy and not work properly.
+3. Connect to a game by entering the Game ID on your phone.
+ 
 
-
+## Dist
+To minimize the project, run:
+```
+$ gulp build
+```
