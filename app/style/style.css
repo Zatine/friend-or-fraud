@@ -84,6 +84,9 @@ h4 {
 h5 {
   text-transform: uppercase; }
 
+.small {
+  font-size: 0.7em; }
+
 p {
   color: #383838;
   font-family: Roboto, sans-serif;
