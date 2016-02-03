@@ -89,6 +89,10 @@ h5{
   text-transform: uppercase;
 }
 
+.small{
+  font-size: 0.7em;
+}
+
 p{
     color: $text-color;
     font-family: Roboto, sans-serif;
@@ -315,7 +319,6 @@ h5{
 .game-over{
     width: 75%;
     padding-left: 50px;
-    //padding-right: 50px;
     margin: auto;
     max-width: 960px;
 }
@@ -438,8 +441,6 @@ h5{
 }
 .img-logo{
   width: 15%;
-  //float: left;
-  //transform: rotate(-10deg);
 }
 .logo{
   position: absolute;
@@ -460,4 +461,24 @@ h5{
 }
 .rank-span{
   padding:30px;
+}
+
+.answered-list{
+  margin: 0;
+  padding: 0;
+  li{
+    display: inline;
+    margin: 0;
+    padding: 0;
+
+    &:after{
+      content: ", ";
+    }
+    &:last-child:after{
+      content: " ";
+    }
+    &:nth-last-of-type(2):after{
+      content: " and ";
+    }
+  }
 }

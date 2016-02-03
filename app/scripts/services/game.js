@@ -3,14 +3,16 @@ app.service('Game', Game);
 function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $state, $rootScope, Mobile, $timeout){
   var self = this,
       currentPlayerIndex = 0,
-      currentQuestionIndex = 0;
+      currentQuestionIndex = 0,
+      answerTime = 9;
 
   this.ref = null;
   this.inProgress = false;
   this.numOfPlayers = 0;
   this.id = '...';
   this.playerOrder = [];
-  this.time = 9;
+  this.time = answerTime;
+  this.wait = true;
 
   this.createNew = function(){
     var id = generateGameCode();
@@ -23,7 +25,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
     function addToFirebase(id){
         self.id = id;
         self.ref = FirebaseRef.child('Games').child(id);
-        self.ref.set({numOfPlayers: self.numOfPlayers, inProgress: self.inProgress, time: self.time});
+        self.ref.set({numOfPlayers: self.numOfPlayers, inProgress: self.inProgress, time: self.time, wait: self.wait});
 
         $firebaseAuth(FirebaseRef).$authAnonymously().then(function(authData) {
               console.log("Logged in as:", authData.uid);
@@ -75,8 +77,10 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
       if(Mobile) return;
       /*self.questions[currentQuestionIndex] = self.currentQuestion;
       self.ref.update({questions: self.questions});*/
-      resetTimer();
+      setWait(false);
       resetAnswers(self.players);
+      self.currentQuestion = null;
+      self.currentPlayer = null;
       self.ref.child('currentQuestion').remove();
       self.ref.child('currentPlayer').remove();
 
@@ -88,9 +92,8 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
           return;
       }
 
-      self.currentQuestion = self.questions[currentQuestionIndex];
-      self.ref.child('currentQuestion').set(self.currentQuestion);
-      setCurrentPlayer(self.playerOrder[currentPlayerIndex]);
+      setCurrent(self.playerOrder[currentPlayerIndex], self.questions[currentQuestionIndex]);
+      resetTimer();
   }
 
   this.setCurrentQuestionAnswer = function(answer){
@@ -104,14 +107,20 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
   }
 
   function resetTimer(){
-    self.time = 9;
-    self.ref.update({time: 9});
+    self.time = answerTime;
+    self.ref.update({time: answerTime});
+  }
+  
+  function setWait(value){
+    if(Mobile) return;
+    self.ref.update({wait: value});
   }
 
-  function setCurrentPlayer(id){
+  function setCurrent(id, question){
        self.ref.child('players').once('value', function(snapshot) {
           self.currentPlayer = snapshot.val()[id];
-          self.ref.update({currentPlayer: self.currentPlayer});
+          self.currentQuestion = question;
+          self.ref.update({currentPlayer: self.currentPlayer, currentQuestion: self.currentQuestion});
        });
   }
 
@@ -120,12 +129,10 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
         self.questions = shuffleArray(snapshot.val()).splice(0, 5);
 
         self.playerOrder = shuffleArray(self.playerOrder);
+      
+        setCurrent(self.playerOrder[currentPlayerIndex], self.questions[currentQuestionIndex]);
 
-        self.currentQuestion = self.questions[currentQuestionIndex];
-
-        setCurrentPlayer(self.playerOrder[currentPlayerIndex]);
-
-        self.ref.update({playerOrder: self.playerOrder, questions: self.questions, currentQuestion : self.currentQuestion});
+        self.ref.update({playerOrder: self.playerOrder, questions: self.questions});
 
         startGame();
     });
@@ -134,8 +141,10 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
   function startGame(){
     self.ref.on('value', function(snapshot){
        setGameParameters(snapshot.val());
-       if(self.time === 0 && $state.is('guess-answer')) $state.go('display-answer');
-       if(!self.inProgress /*&& !self.currentPlayer && !self.currentQuestion*/){
+       if(self.time === 0 && $state.is('guess-answer')){ $state.go('display-answer');}
+       if(self.time === 9 && $state.is('display-answer') && !self.wait && self.currentQuestion && self.currentPlayer){$state.go('set-answer'); setWait(true);}
+      
+       if(!self.inProgress && !self.currentPlayer && !self.currentQuestion){
           self.ref.child('players').off('value');
           self.ref.child('currentQuestion').off('value');
           endGame();
@@ -145,15 +154,19 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
        }
        if(!$rootScope.$$phase) $rootScope.$apply();
     });
+    
     self.ref.child('players').on('value', function(snapshot){
-        if(snapshot.val() === null) return;
+        if(snapshot.val() === null || Mobile) return;
         var answers = correctAnswers(snapshot.val());
         self.ref.child('currentQuestion').update(answers);
     });
+    
     self.ref.child('currentQuestion').on('value', function (snapshot){
-      if(snapshot.val()) self.selectedAnswer = snapshot.val().selectedAnswer;
-      if(self.selectedAnswer && $state.is('set-answer') && self.time > 0) $state.go('guess-answer');
+      if(snapshot.val()) self.currentQuestion = snapshot.val();
+      else return;
+      if(self.currentQuestion.selectedAnswer && $state.is('set-answer') && self.time > 0) $state.go('guess-answer');
     });
+    
     $state.go('set-answer');
   }
 
@@ -174,6 +187,7 @@ function Game(UserState, FirebaseRef, $firebaseAuth, $firebaseArray, Error, $sta
     self.questions = snapshotVal.questions;
     self.currentQuestion = snapshotVal.currentQuestion;
     self.time = snapshotVal.time;
+    self.wait = snapshotVal.wait;
   }
 
   function checkPlayers(players){
