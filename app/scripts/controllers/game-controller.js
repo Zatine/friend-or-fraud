@@ -7,8 +7,8 @@ function GameController($scope, $interval, Mobile, $state, $timeout, Game, Curre
   
         //Timer funktion
         if($state.is('guess-answer')) {
-            //$scope.count = 7;
-            if(!Mobile) var counter = $interval(timer, 1000); // kör varje sekund
+            
+            if(!Mobile) var counter = $interval(timer, 1000);
 
             function timer() {
                 Game.timerTick();
@@ -30,11 +30,8 @@ function GameController($scope, $interval, Mobile, $state, $timeout, Game, Curre
                 CurrentUser.addScore(1);
             }
             
-            var time = $timeout(function () {
-                if(!Mobile) Game.nextQuestion();
-                $state.go('set-answer');
-                $timeout.cancel(time);
-            }, 5000);
+            if(!Mobile) $timeout(function(){Game.nextQuestion();}, 8000);
+            
         }
 
 

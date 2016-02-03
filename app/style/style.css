@@ -411,3 +411,17 @@ h5 {
 
 .rank-span {
   padding: 30px; }
+
+.answered-list {
+  marign: 0;
+  padding: 0; }
+  .answered-list li {
+    display: inline;
+    margin: 0;
+    padding: 0; }
+    .answered-list li:after {
+      content: ", "; }
+    .answered-list li:last-child:after {
+      content: " "; }
+    .answered-list li:nth-last-of-type(2):after {
+      content: " and "; }
