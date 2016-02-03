@@ -34,6 +34,30 @@
 .orange-text {
   color: #f68e56; }
 
+.teal {
+  background-color: #005b7f; }
+
+.teal-text {
+  color: #005b7f; }
+
+.purple {
+  background-color: #792dc6; }
+
+.purple-text {
+  color: #792dc6; }
+
+.black {
+  background-color: #101010; }
+
+.black-text {
+  color: #101010; }
+
+.turqoise {
+  background-color: #22c1af; }
+
+.turqoise-text {
+  color: #22c1af; }
+
 .fish {
   background-image: url("../avatars/fish.svg"); }
 
@@ -49,7 +73,8 @@
 /* Styling */
 body {
   background: #eee;
-  font-family: sans-serif;
+  color: #383838;
+  font-family: Roboto, sans-serif;
   text-align: center;
   font-size: 24px;
   padding-top: 90px; }
@@ -62,8 +87,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   color: #333;
-  margin: 0;
-  font-family: Roboto, sans-serif; }
+  margin: 0; }
 
 h1 {
   font-size: 3em;
@@ -82,19 +106,19 @@ h4 {
   margin-bottom: 10px; }
 
 h5 {
+  margin: 15px 15px;
+  font-size: 3em;
+  text-shadow: -1px -1px 0 #fc6c85, 1px -1px 0 #fc6c85, -1px 1px 0 #fc6c85, 1px 1px 0 #fc6c85;
   text-transform: uppercase; }
 
 .small {
-  font-size: 0.7em; }
+  font-size: 0.8em; }
 
 p {
-  color: #383838;
-  font-family: Roboto, sans-serif;
   font-weight: bold; }
 
 a {
-  text-decoration: none;
-  font-family: Roboto, sans-serif; }
+  text-decoration: none; }
 
 .main {
   padding: 15px 0; }
@@ -123,16 +147,39 @@ a {
   background-repeat: no-repeat;
   background-size: 80% 80%;
   background-position: center center; }
-
-.small-circle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 20px;
-  text-align: center;
-  display: inline-block;
-  margin: 0 12px;
-  position: relative; }
+  .answers .circle {
+    width: 30px;
+    height: 30px;
+    margin: 0 4px;
+    top: 4px; }
+  .circle.instructions {
+    display: none;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    right: 2%;
+    top: 2%;
+    color: white;
+    -ms-transform: rotate(32deg);
+    /* IE 9 */
+    -webkit-transform: rotate(32deg);
+    /* Chrome, Safari, Opera */
+    transform: rotate(32deg);
+    cursor: pointer;
+    transition: background 1s; }
+    @media (min-width: 970px) {
+      .circle.instructions {
+        display: block; } }
+    .circle.instructions:hover {
+      background: rgba(0, 91, 127, 0.83); }
+      .circle.instructions:hover p {
+        color: white; }
+    .circle.instructions p {
+      transition: color 1s;
+      color: #BDB8B8;
+      width: 74px;
+      padding-top: 46px;
+      padding-left: 36px; }
 
 .answers {
   position: absolute;
@@ -140,49 +187,6 @@ a {
   top: 4px;
   left: 256px;
   width: 100%; }
-  .answers .answer-circle {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    font-size: 20px;
-    text-align: center;
-    display: inline-block;
-    margin: 0 4px;
-    top: 4px; }
-
-.big-circle {
-  display: none;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  font-size: 20px;
-  text-align: center;
-  background: #005b7f;
-  position: absolute;
-  right: 2%;
-  top: 2%;
-  color: white;
-  -ms-transform: rotate(32deg);
-  /* IE 9 */
-  -webkit-transform: rotate(32deg);
-  /* Chrome, Safari, Opera */
-  transform: rotate(32deg);
-  cursor: pointer; }
-  @media (min-width: 970px) {
-    .big-circle {
-      display: block; } }
-  .big-circle p {
-    color: #BDB8B8;
-    width: 74px;
-    padding-top: 46px;
-    padding-left: 36px; }
-
-.big-circle:hover {
-  background: rgba(0, 91, 127, 0.83);
-  transition: background 1s; }
-  .big-circle:hover p {
-    color: white;
-    transition: color 1s; }
 
 .options {
   position: relative; }
@@ -192,10 +196,8 @@ li {
   list-style: none;
   width: 250px;
   margin: 0 auto;
-  text-align: left;
-  font-family: Roboto, sans-serif; }
+  text-align: left; }
   li button {
-    font-family: Roboto, sans-serif;
     font-weight: bold;
     position: relative;
     width: 100%; }
@@ -269,62 +271,8 @@ li {
     margin-top: 30%;
     color: white; }
 
-h4 {
-  font-size: 3em;
-  margin-bottom: 10px; }
-
-h5 {
-  margin: 15px 15px;
-  font-size: 3em;
-  text-shadow: -1px -1px 0 #fc6c85, 1px -1px 0 #fc6c85, -1px 1px 0 #fc6c85, 1px 1px 0 #fc6c85; }
-
 .timer-red {
   color: #e11f1f; }
-
-.game-over {
-  width: 75%;
-  padding-left: 50px;
-  margin: auto;
-  max-width: 960px; }
-
-.game-over-rank,
-.game-over-name,
-.game-over-score {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center; }
-
-.game-over-rank {
-  float: left;
-  width: 30%;
-  margin: 2px; }
-  .game-over-rank li:first-child {
-    background-color: #fc6c85;
-    font-weight: bold;
-    padding-left: 5px; }
-
-.game-over-name {
-  float: left;
-  width: 30%;
-  margin: 2px; }
-  .game-over-name li:first-child {
-    background-color: #fc6c85;
-    font-weight: bold;
-    padding-left: 5px; }
-
-.game-over-score {
-  float: left;
-  width: 30%;
-  margin: 2px; }
-  .game-over-score li:first-child {
-    background-color: #fc6c85;
-    font-weight: bold;
-    padding-left: 5px; }
-
-.group:after {
-  content: "";
-  display: table;
-  clear: both; }
 
 .overlay {
   background: rgba(0, 0, 0, 0.6);
@@ -339,20 +287,16 @@ h5 {
   transition: background 2s;
   border: 13px solid #033D54;
   border-radius: 35px;
-  height: 20%;
-  z-index: 200;
   width: 600px;
+  max-width: 85%;
   height: 350px;
-  margin: 0 auto;
-  position: absolute;
-  left: 29%;
-  top: 15%;
+  margin: 20% auto;
+  position: relative;
   background-color: #EAEAEA;
   color: #5E4F4F; }
   .how-to-play h2 {
     padding-top: 30px; }
   .how-to-play span {
-    float: right;
     margin-right: 13px;
     font-weight: bold;
     cursor: pointer;
@@ -367,10 +311,7 @@ h5 {
     margin-bottom: 1.5rem; }
     .how-to-play ul li {
       width: 100%;
-      text-align: center; }
-
-.pink-text {
-  font-weight: bold; }
+      text-align: left; }
 
 .how-to-play-list {
   width: 90%;

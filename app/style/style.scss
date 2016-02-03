@@ -30,7 +30,11 @@ $colors: (
   'blue' #5674b9,
   'green' $green,
   'red' $red,
-  'orange' $orange
+  'orange' $orange,
+  'teal' #005b7f,
+  'purple' #792dc6,
+  'black' #101010,
+  'turqoise' #22c1af
 );
 
 @each $value in $colors {
@@ -48,7 +52,8 @@ $avatars: 'fish' 'bird' 'snail' 'cat';
 /* Styling */
 body{
     background: $bg-color;
-    font-family: sans-serif;
+    color: $text-color;
+    font-family: Roboto, sans-serif;
     text-align: center;
     font-size: 24px;
     padding-top: 90px;
@@ -64,7 +69,6 @@ h1, h2, h3, h4, h5, h6{
     font-weight: normal;
     color: $heading-color;
     margin: 0;
-    font-family: Roboto, sans-serif;
 }
 
 h1{
@@ -86,22 +90,22 @@ h4{
   margin-bottom: 10px;
 }
 h5{
+  margin: 15px 15px;
+  font-size: 3em;
+  text-shadow: -1px -1px 0 $outline, 1px -1px 0 $outline, -1px 1px 0 $outline, 1px 1px 0 $outline;
   text-transform: uppercase;
 }
 
 .small{
-  font-size: 0.7em;
+  font-size: 0.8em;
 }
 
 p{
-    color: $text-color;
-    font-family: Roboto, sans-serif;
     font-weight: bold;
 }
 
 a{
   text-decoration: none;
-  font-family: Roboto, sans-serif;
 }
 
 .main{
@@ -133,17 +137,43 @@ a{
     background-repeat: no-repeat;
     background-size: 80% 80%;
     background-position: center center;
-}
-
-.small-circle{
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    font-size:20px;
-    text-align:center;
-    display: inline-block;
-    margin: 0 12px;
-    position: relative;
+    
+    .answers &{
+      width:30px;
+      height:30px;
+      margin: 0 4px;
+      top: 4px;
+    }
+  
+    &.instructions{
+      @media(min-width:$tablet){display:block}
+      display: none;
+      width:150px;
+      height:150px;
+      position: absolute;
+      right: 2%;
+      top: 2%;
+      color: white;
+      -ms-transform: rotate(32deg); /* IE 9 */
+      -webkit-transform: rotate(32deg); /* Chrome, Safari, Opera */
+      transform: rotate(32deg);
+      cursor: pointer;
+      transition: background 1s;
+      
+      &:hover{
+            background: rgba(0, 91, 127, 0.83);
+            p{
+                color: white;
+            }
+      }
+      p{
+          transition: color 1s;
+          color: #BDB8B8;
+          width: 74px;
+          padding-top: 46px;
+          padding-left: 36px;
+      }
+  }
 }
 
 .answers{
@@ -152,49 +182,6 @@ a{
     top: 4px;
     left: 256px;
     width: 100%;
-    .answer-circle{
-        width:30px;
-        height:30px;
-        border-radius:50%;
-        font-size:20px;
-        text-align:center;
-        display: inline-block;
-        margin: 0 4px;
-        top: 4px;
-    }
-}
-
-.big-circle{
-  @media(min-width:$tablet){display:block}
-    display: none;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    font-size:20px;
-    text-align:center;
-    background: #005b7f;
-    position: absolute;
-    right: 2%;
-    top: 2%;
-    color: white;
-    -ms-transform: rotate(32deg); /* IE 9 */
-    -webkit-transform: rotate(32deg); /* Chrome, Safari, Opera */
-    transform: rotate(32deg);
-    cursor: pointer;
-    p{
-        color: #BDB8B8;
-        width: 74px;
-        padding-top: 46px;
-        padding-left: 36px;
-    }
-}
-.big-circle:hover{
-    background: rgba(0, 91, 127, 0.83);
-    transition: background 1s;
-    p{
-        color: white;
-        transition: color 1s;
-    }
 }
 
 .options{
@@ -207,12 +194,11 @@ li{
     width: 250px;
     margin: 0 auto;
     text-align: left;
-    font-family: Roboto, sans-serif;
+  
     button{
-        font-family: Roboto, sans-serif;
       font-weight: bold;
-        position: relative;
-        width: 100%;
+      position: relative;
+      width: 100%;
     }
 
     button.wrong:after {
@@ -280,6 +266,7 @@ li{
     width: 85%;
     margin: 0 auto;
 }
+
 .ready-button{
   position: relative;
   display: inline-block;
@@ -302,71 +289,10 @@ li{
     color: white;
   }
 }
-h4{
-  font-size: 3em;
-  margin-bottom: 10px;
-}
-h5{
-  margin: 15px 15px;
-  font-size: 3em;
-  text-shadow: -1px -1px 0 $outline, 1px -1px 0 $outline, -1px 1px 0 $outline, 1px 1px 0 $outline;
-}
 
 .timer-red{
   color: $panicRed;
 }
-
-.game-over{
-    width: 75%;
-    padding-left: 50px;
-    margin: auto;
-    max-width: 960px;
-}
-
-.game-over-rank,
-.game-over-name,
-.game-over-score{
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-.game-over-rank{
-  float: left;
-  width: 30%;
-  margin: 2px;
-  li {
-    &:first-child {
-      @include score-first-child
-    }
-  }
-}
-.game-over-name{
-  float: left;
-  width: 30%;
-  margin: 2px;
-  li {
-    &:first-child {
-      @include score-first-child
-    }
-  }
-}
-.game-over-score{
-  float: left;
-  width: 30%;
-  margin: 2px;
-  li {
-    &:first-child {
-      @include score-first-child
-    }
-  }
-
-}
-.group:after{
-  content:"";
-  display: table;
-  clear: both;
-}
-
 
 .overlay{
     background: rgba(0, 0, 0, 0.6);
@@ -377,25 +303,22 @@ h5{
     left: 0;
     position: fixed;
 }
+
 .how-to-play{
     transition: background 2s;
     border: 13px solid #033D54;
     border-radius: 35px;
-    height: 20%;
-    z-index: 200;
     width: 600px;
+    max-width: 85%;
     height: 350px;
-    margin: 0 auto;
-    position: absolute;
-    left: 29%;
-    top: 15%;
+    margin: 20% auto;
+    position:relative;
     background-color: #EAEAEA;
     color: #5E4F4F;
     h2{
         padding-top: 30px;
     }
     span{
-        float: right;
         margin-right: 13px;
         font-weight: bold;
         cursor: pointer;
@@ -412,13 +335,11 @@ h5{
         margin-bottom: 1.5rem;
         li{
             width: 100%;
-            text-align: center;
+            text-align: left;
         }
     }
 }
-.pink-text{
-  font-weight: bold;
-}
+
 .how-to-play-list{
   width: 90%;
   margin: 0 auto;
